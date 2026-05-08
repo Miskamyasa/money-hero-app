@@ -51,9 +51,9 @@ import Testing
         name: "Apple",
         provider: .yahoo,
         price: 190,
-        previousClose: 0,
-        change: 190,
-        changePercent: .infinity,
+        previousClose: -1,
+        change: 191,
+        changePercent: 1,
         currency: "USD",
         marketTime: nil,
         exchangeTimezoneName: nil,
@@ -188,27 +188,45 @@ import Testing
 }
 
 @Test func widgetDefaultsAndCurrencyDefaultsMatchMvpContract() {
-    #expect(CurrencyWidgetSetting.default.symbols == ["USD", "EUR", "GBP"])
+    #expect(CurrencyWidgetSetting.default.symbols == ["USD", "ILS", "EUR", "RUB"])
+    #expect(MarketTickerSetting.default.symbols == [
+        "GC=F",
+        "^GSPC"
+    ])
 
     let expectedOrder: [DashboardWidget] = [
-        .gold,
-        .sp500,
         .currencies,
-        .totalPortfolioBalance,
-        .expectedBalanceOneYear,
-        .expectedBalanceFiveYears,
+        .keyMarkets,
         .fetchProgress
     ]
 
     #expect(WidgetDefaults.mvp.map(\.widget) == expectedOrder)
     #expect(WidgetDefaults.mvp.allSatisfy { $0.isHidden == false })
-    #expect(DashboardWidget.totalPortfolioBalance.requiresHoldings)
-    #expect(DashboardWidget.expectedBalanceOneYear.requiresHoldings)
-    #expect(DashboardWidget.expectedBalanceFiveYears.requiresHoldings)
-    #expect(DashboardWidget.gold.requiresHoldings == false)
-    #expect(DashboardWidget.sp500.requiresHoldings == false)
     #expect(DashboardWidget.currencies.requiresHoldings == false)
+    #expect(DashboardWidget.keyMarkets.requiresHoldings == false)
     #expect(DashboardWidget.fetchProgress.requiresHoldings == false)
+}
+
+@Test func trackedSymbolsUseConfigurableMarketsAndDeduplicateHiddenHoldings() {
+    let symbols = MarketRefreshCoordinator.trackedSymbols(
+        activeWidgets: [.currencies, .keyMarkets],
+        holdings: [
+            Holding(symbol: " aapl ", shares: 1, targetWeight: nil, isHidden: false),
+            Holding(symbol: "AAPL", shares: 2, targetWeight: nil, isHidden: false),
+            Holding(symbol: "MSFT", shares: 3, targetWeight: nil, isHidden: true)
+        ],
+        currencySettings: CurrencyWidgetSetting(symbols: ["USD", "ILS", "EUR", "RUB"]),
+        marketTickerSettings: MarketTickerSetting(symbols: [" GC=F ", "^GSPC"])
+    )
+
+    #expect(symbols == [
+        "GC=F",
+        "^GSPC",
+        "ILS",
+        "EUR",
+        "RUB",
+        "AAPL"
+    ])
 }
 
 private actor InvocationCounter {

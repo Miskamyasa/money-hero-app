@@ -26,8 +26,6 @@ public enum YahooFinanceClientError: Error, Sendable {
 
 public actor YahooFinanceClient {
     public static let sp500Symbol = "^GSPC"
-    public static let eurUsdSymbol = "EURUSD=X"
-    public static let gbpUsdSymbol = "GBPUSD=X"
     public static let goldSymbol = "GC=F"
 
     private let userAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile Safari/604.1"
@@ -61,12 +59,9 @@ public actor YahooFinanceClient {
         return try await fetchStockChartNormalized(symbol: symbol)
     }
 
-    public func fetchEURUSDChart() async throws -> YahooHTTPResponse {
-        try await fetchCurrencyChart(symbol: Self.eurUsdSymbol)
-    }
-
-    public func fetchGBPUSDChart() async throws -> YahooHTTPResponse {
-        try await fetchCurrencyChart(symbol: Self.gbpUsdSymbol)
+    public func fetchCurrencyChart(displayedCurrency rawCurrency: String) async throws -> YahooHTTPResponse {
+        let currency = try normalizeCurrencyCode(rawCurrency)
+        return try await fetchCurrencyChart(providerSymbol: "\(currency)USD=X")
     }
 
     public func fetchGoldQuoteChart() async throws -> YahooHTTPResponse {
@@ -115,8 +110,8 @@ public actor YahooFinanceClient {
         return firstResponse
     }
 
-    private func fetchCurrencyChart(symbol: String) async throws -> YahooHTTPResponse {
-        var components = URLComponents(string: "https://query1.finance.yahoo.com/v8/finance/chart/\(symbol)")
+    private func fetchCurrencyChart(providerSymbol: String) async throws -> YahooHTTPResponse {
+        var components = URLComponents(string: "https://query1.finance.yahoo.com/v8/finance/chart/\(providerSymbol)")
         components?.queryItems = [
             URLQueryItem(name: "range", value: "2d"),
             URLQueryItem(name: "interval", value: "1d")

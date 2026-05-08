@@ -19,6 +19,16 @@ public struct MarketRefreshSnapshot: Sendable {
     }
 }
 
+private enum TrackedSymbolKind: Sendable {
+    case market
+    case currency
+}
+
+private struct TrackedSymbolRequest: Sendable {
+    let symbol: String
+    let kind: TrackedSymbolKind
+}
+
 public actor MarketRefreshCoordinator {
     private let cacheStore: LocalJSONCacheStore
     private let yahooClient: YahooFinanceClient
@@ -48,12 +58,32 @@ public actor MarketRefreshCoordinator {
         self.fetchQueue = fetchQueue
     }
 
-    public func refreshOnAppOpen(holdings: [Holding], widgetSettings: [WidgetSetting] = WidgetDefaults.mvp) async {
-        await refresh(holdings: holdings, widgetSettings: widgetSettings)
+    public func refreshOnAppOpen(
+        holdings: [Holding],
+        widgetSettings: [WidgetSetting] = WidgetDefaults.mvp,
+        currencySettings: CurrencyWidgetSetting = .default,
+        marketTickerSettings: MarketTickerSetting = .default
+    ) async {
+        await refresh(
+            holdings: holdings,
+            widgetSettings: widgetSettings,
+            currencySettings: currencySettings,
+            marketTickerSettings: marketTickerSettings
+        )
     }
 
-    public func refreshOnPullToRefresh(holdings: [Holding], widgetSettings: [WidgetSetting] = WidgetDefaults.mvp) async {
-        await refresh(holdings: holdings, widgetSettings: widgetSettings)
+    public func refreshOnPullToRefresh(
+        holdings: [Holding],
+        widgetSettings: [WidgetSetting] = WidgetDefaults.mvp,
+        currencySettings: CurrencyWidgetSetting = .default,
+        marketTickerSettings: MarketTickerSetting = .default
+    ) async {
+        await refresh(
+            holdings: holdings,
+            widgetSettings: widgetSettings,
+            currencySettings: currencySettings,
+            marketTickerSettings: marketTickerSettings
+        )
     }
 
     public func snapshot() -> MarketRefreshSnapshot {
@@ -65,21 +95,33 @@ public actor MarketRefreshCoordinator {
         )
     }
 
-    private func refresh(holdings: [Holding], widgetSettings: [WidgetSetting]) async {
+    private func refresh(
+        holdings: [Holding],
+        widgetSettings: [WidgetSetting],
+        currencySettings: CurrencyWidgetSetting,
+        marketTickerSettings: MarketTickerSetting
+    ) async {
         let activeWidgets = activeWidgets(from: widgetSettings, hasHoldings: !holdings.isEmpty)
-        let symbols = trackedSymbols(activeWidgets: activeWidgets, holdings: holdings)
+        let requests = Self.trackedRequests(
+            activeWidgets: activeWidgets,
+            holdings: holdings,
+            currencySettings: currencySettings,
+            marketTickerSettings: marketTickerSettings
+        )
+        let symbols = requests.map(\.symbol)
 
         await hydrateCache(symbols: symbols)
 
         _ = await fetchQueue.clearPending()
         await setProgressFromQueue()
 
-        for symbol in symbols {
+        for request in requests {
+            let symbol = request.symbol
             let quoteTask = MarketFetchQueueTask(cacheKey: quoteCacheKey(symbol: symbol), label: "Quote \(symbol)") { [weak self] in
                 guard let self else {
                     return
                 }
-                await self.runQuoteAndHistoryFetch(symbol: symbol)
+                await self.runQuoteAndHistoryFetch(symbol: symbol, kind: request.kind)
             }
             _ = await fetchQueue.enqueue(task: quoteTask, completion: queueCompletion)
         }
@@ -114,39 +156,27 @@ public actor MarketRefreshCoordinator {
         updateLastUpdatedFromCache()
     }
 
-    private func runQuoteAndHistoryFetch(symbol: String) async {
+    private func runQuoteAndHistoryFetch(symbol: String, kind: TrackedSymbolKind) async {
         do {
             let normalized = try normalizeSymbol(symbol)
+
+            if kind == .currency {
+                let response = try await yahooClient.fetchCurrencyChart(displayedCurrency: normalized)
+                let quote = try parser.parseCurrencyQuote(
+                    data: response.data,
+                    requestedSymbol: normalized,
+                    displayedCurrency: normalized,
+                    invertForUSDDisplay: true
+                )
+                try await persistSuccess(symbol: normalized, quote: quote, history: nil)
+                return
+            }
 
             if normalized == YahooFinanceClient.goldSymbol {
                 let quoteResponse = try await yahooClient.fetchGoldQuoteChart()
                 let historyResponse = try await yahooClient.fetchGoldHistoryChart()
                 let parsed = try parser.parseGoldQuoteAndHistory(quoteData: quoteResponse.data, historyData: historyResponse.data)
                 try await persistSuccess(symbol: normalized, quote: parsed.quote, history: parsed.history)
-                return
-            }
-
-            if normalized == "EUR" {
-                let response = try await yahooClient.fetchEURUSDChart()
-                let quote = try parser.parseCurrencyQuote(
-                    data: response.data,
-                    requestedSymbol: normalized,
-                    displayedCurrency: normalized,
-                    invertForUSDDisplay: true
-                )
-                try await persistSuccess(symbol: normalized, quote: quote, history: nil)
-                return
-            }
-
-            if normalized == "GBP" {
-                let response = try await yahooClient.fetchGBPUSDChart()
-                let quote = try parser.parseCurrencyQuote(
-                    data: response.data,
-                    requestedSymbol: normalized,
-                    displayedCurrency: normalized,
-                    invertForUSDDisplay: true
-                )
-                try await persistSuccess(symbol: normalized, quote: quote, history: nil)
                 return
             }
 
@@ -276,28 +306,69 @@ public actor MarketRefreshCoordinator {
             .filter { hasHoldings || !$0.requiresHoldings }
     }
 
-    private func trackedSymbols(activeWidgets: [DashboardWidget], holdings: [Holding]) -> [String] {
-        var symbols: [String] = []
+    public nonisolated static func trackedSymbols(
+        activeWidgets: [DashboardWidget],
+        holdings: [Holding],
+        currencySettings: CurrencyWidgetSetting,
+        marketTickerSettings: MarketTickerSetting
+    ) -> [String] {
+        trackedRequests(
+            activeWidgets: activeWidgets,
+            holdings: holdings,
+            currencySettings: currencySettings,
+            marketTickerSettings: marketTickerSettings
+        )
+        .map(\.symbol)
+    }
 
-        if activeWidgets.contains(.sp500) {
-            symbols.append(YahooFinanceClient.sp500Symbol)
-        }
-        if activeWidgets.contains(.gold) {
-            symbols.append(YahooFinanceClient.goldSymbol)
+    private nonisolated static func trackedRequests(
+        activeWidgets: [DashboardWidget],
+        holdings: [Holding],
+        currencySettings: CurrencyWidgetSetting,
+        marketTickerSettings: MarketTickerSetting
+    ) -> [TrackedSymbolRequest] {
+        var requests: [TrackedSymbolRequest] = []
+
+        if activeWidgets.contains(.keyMarkets) {
+            requests.append(
+                contentsOf: marketTickerSettings.symbols.compactMap { symbol in
+                    guard let normalized = try? normalizeSymbol(symbol) else {
+                        return nil
+                    }
+                    return TrackedSymbolRequest(symbol: normalized, kind: .market)
+                }
+            )
         }
         if activeWidgets.contains(.currencies) {
-            symbols.append("EUR")
-            symbols.append("GBP")
+            requests.append(
+                contentsOf: currencySettings.symbols.compactMap { symbol in
+                    guard let normalized = Self.fetchableCurrencySymbol(symbol) else {
+                        return nil
+                    }
+                    return TrackedSymbolRequest(symbol: normalized, kind: .currency)
+                }
+            )
         }
 
         for holding in holdings {
+            guard !holding.isHidden else {
+                continue
+            }
             if let normalized = try? normalizeSymbol(holding.symbol) {
-                symbols.append(normalized)
+                requests.append(TrackedSymbolRequest(symbol: normalized, kind: .market))
             }
         }
 
         var seen: Set<String> = []
-        return symbols.filter { seen.insert($0).inserted }
+        return requests.filter { seen.insert($0.symbol).inserted }
+    }
+
+    private nonisolated static func fetchableCurrencySymbol(_ symbol: String) -> String? {
+        guard let normalized = try? normalizeCurrencyCode(symbol), normalized != "USD" else {
+            return nil
+        }
+
+        return normalized
     }
 
     private func quoteCacheKey(symbol: String) -> String {

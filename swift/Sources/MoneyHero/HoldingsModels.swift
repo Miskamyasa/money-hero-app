@@ -13,21 +13,12 @@ public struct Holding: Codable, Equatable, Sendable {
 }
 
 public enum DashboardWidget: String, Codable, Equatable, Sendable {
-    case gold
-    case sp500
     case currencies
-    case totalPortfolioBalance
-    case expectedBalanceOneYear
-    case expectedBalanceFiveYears
+    case keyMarkets
     case fetchProgress
 
     public var requiresHoldings: Bool {
-        switch self {
-        case .totalPortfolioBalance, .expectedBalanceOneYear, .expectedBalanceFiveYears:
-            return true
-        case .gold, .sp500, .currencies, .fetchProgress:
-            return false
-        }
+        false
     }
 }
 
@@ -50,17 +41,26 @@ public struct CurrencyWidgetSetting: Codable, Equatable, Sendable {
         self.symbols = symbols
     }
 
-    public static let `default` = CurrencyWidgetSetting(symbols: ["USD", "EUR", "GBP"])
+    public static let `default` = CurrencyWidgetSetting(symbols: ["USD", "ILS", "EUR", "RUB"])
+}
+
+public struct MarketTickerSetting: Codable, Equatable, Sendable {
+    public let symbols: [String]
+
+    public init(symbols: [String]) {
+        self.symbols = symbols
+    }
+
+    public static let `default` = MarketTickerSetting(symbols: [
+        "GC=F",
+        "^GSPC"
+    ])
 }
 
 public enum WidgetDefaults {
     public static let mvp: [WidgetSetting] = [
-        WidgetSetting(widget: .gold, isHidden: false, order: 0),
-        WidgetSetting(widget: .sp500, isHidden: false, order: 1),
-        WidgetSetting(widget: .currencies, isHidden: false, order: 2),
-        WidgetSetting(widget: .totalPortfolioBalance, isHidden: false, order: 3),
-        WidgetSetting(widget: .expectedBalanceOneYear, isHidden: false, order: 4),
-        WidgetSetting(widget: .expectedBalanceFiveYears, isHidden: false, order: 5),
-        WidgetSetting(widget: .fetchProgress, isHidden: false, order: 6)
+        WidgetSetting(widget: .currencies, isHidden: false, order: 0),
+        WidgetSetting(widget: .keyMarkets, isHidden: false, order: 1),
+        WidgetSetting(widget: .fetchProgress, isHidden: false, order: 2)
     ]
 }
