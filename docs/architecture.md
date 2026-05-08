@@ -2,12 +2,12 @@
 
 ## Current Repo State
 
-The mobile app implementation is not scaffolded yet. The repository currently contains documentation plus placeholder service folders for `api` and `admin`.
+The repository contains project documentation, API and admin service folders, and a scaffolded Swift mobile app under `swift/`. Flutter and React Native mobile apps are planned but not scaffolded yet.
 
 ## Intended Topology
 
-- Mobile clients: three planned MVP apps, each in its own sibling folder. None scaffolded yet.
-  - `swift/` - native iOS app.
+- Mobile clients: three planned MVP apps, each in its own sibling folder. Swift is scaffolded; Flutter and React Native are not scaffolded yet.
+  - `swift/` - native iOS app (scaffolded).
   - `flutter/` - Flutter app for iOS and Android.
   - `react/` - React Native app for iOS and Android.
 - API service: Go backend under `api/`, only needed when backend-backed features are introduced. Not part of MVP.
@@ -24,8 +24,8 @@ The mobile app implementation is not scaffolded yet. The repository currently co
 
 ## Service Specs
 
-- `../admin/spec.md` - Admin UI service notes.
-- `../api/spec.md` - API service notes.
-- `../swift/spec.md` - Swift MVP notes. Not present yet.
-- `../flutter/spec.md` - Flutter MVP notes. Not present yet.
-- `../react/spec.md` - React Native MVP notes. Not present yet.
+- `../admin/specs/spec.md` - Admin UI service notes.
+- `../api/specs/spec.md` - API service notes.
+- `../swift/specs/specs.md` - Swift MVP notes.
+- `../flutter/specs/spec.md` - Flutter MVP notes. Not present yet.
+- `../react/specs/spec.md` - React Native MVP notes. Not present yet.

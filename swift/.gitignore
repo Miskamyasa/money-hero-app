@@ -1,0 +1,36 @@
+# Deny-by-default. Add a "!path" line for any new tracked file or directory.
+
+*
+
+# Self-reference and human-readable description of the package
+!.gitignore
+
+# Project README with high-level overview and setup instructions
+!README.md
+
+# Project specifications and architecture documentation
+!specs/
+!specs/specs.md
+
+# Swift package and Xcode project/workspace files
+!Package.swift
+!*.xcodeproj/
+!*.xcodeproj/**
+!*.xcworkspace/
+!*.xcworkspace/**
+
+# Application source, resources, and tests
+!Sources/
+!Sources/**
+!Resources/
+!Resources/**
+!Tests/
+!Tests/**
+
+# Xcode build artifacts and derived data
+.build/
+.swiftpm/
+DerivedData/
+build/
+*.xcuserstate
+xcuserdata/
