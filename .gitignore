@@ -23,5 +23,13 @@
 !admin/
 !app/
 
+# Assets directory for static files, images, etc. (if applicable)
+!assets/
+!assets/**
+
+
 # Top-level guide read by every AI agent at task start
 !AGENTS.md
+
+!screenshots/
+!screenshots/**

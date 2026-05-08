@@ -10,3 +10,7 @@
 
 # Project README with high-level overview and setup instructions
 !README.md
+
+# Project specifications and architecture documentation
+!specs/
+!specs/*.md
