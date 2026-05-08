@@ -13,13 +13,13 @@ Signing and provisioning are not configured in this scaffold.
 
 `Package.swift` declares both iOS 17 and macOS 14. The macOS platform is there so SwiftPM can build and test the SwiftUI package on a Mac host; the product scope remains the native iOS client described in `specs/specs.md`.
 
-## Open the Scaffold
+## Open the iOS App
 
-- In Finder: open the `swift/` folder and double-click `Package.swift`.
+- In Finder: open the `swift/` folder and double-click `MoneyHero.xcodeproj`.
 - In Terminal on macOS:
 
 ```bash
-open -a Xcode Package.swift
+open -a Xcode MoneyHero.xcodeproj
 ```
 
 ## Build and Test
@@ -29,6 +29,7 @@ From Terminal on macOS (inside `swift/`):
 ```bash
 swift build
 swift test
+xcodebuild -project MoneyHero.xcodeproj -scheme MoneyHero -destination 'generic/platform=iOS Simulator' build
 ```
 
 In Xcode:

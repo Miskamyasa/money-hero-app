@@ -1,0 +1,358 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C81EFB2BDDF54499A5CBC968 /* HoldingsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803DA63782104237A8B2D595 /* HoldingsModels.swift */; };
+		13ECD25FEB1E4023B5F8F824 /* LocalJSONCacheStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D7F1906FD0437194AF8CE8 /* LocalJSONCacheStore.swift */; };
+		A3996DAA9E024CE687A477B6 /* MarketContracts.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA230DA38FF34AA59FFC8A5C /* MarketContracts.swift */; };
+		6E1BB65579014147879B1BF8 /* MarketFetchQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776A4E0F4F6A47CAB8D101F4 /* MarketFetchQueue.swift */; };
+		E06BECB8A5984FF7B611C899 /* MarketNormalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DECBBAF156543BD927F9060 /* MarketNormalization.swift */; };
+		7AB9AD426B964F9389FFA3F9 /* MarketRefreshCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C09E46E697A48B28707A6F9 /* MarketRefreshCoordinator.swift */; };
+		46C0966802CB48FB900C95E5 /* MoneyHeroApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BB73C0B17C435C97B4BC29 /* MoneyHeroApp.swift */; };
+		660C09A466664E83A5905B1B /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E600E3C9AC0D49C3BF51EC8D /* RootView.swift */; };
+		7D5596A5C14D4123A8E84223 /* YahooChartParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39240BDB02B4FCCB4C8BBAA /* YahooChartParser.swift */; };
+		944C0BF4B90E42ABB273B267 /* YahooFinanceClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE80390E23B49C799F7C5DC /* YahooFinanceClient.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		D3F8241C522D4D6E80F773A2 /* MoneyHero.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoneyHero.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		803DA63782104237A8B2D595 /* HoldingsModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoldingsModels.swift; sourceTree = "<group>"; };
+		82D7F1906FD0437194AF8CE8 /* LocalJSONCacheStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalJSONCacheStore.swift; sourceTree = "<group>"; };
+		CA230DA38FF34AA59FFC8A5C /* MarketContracts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketContracts.swift; sourceTree = "<group>"; };
+		776A4E0F4F6A47CAB8D101F4 /* MarketFetchQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketFetchQueue.swift; sourceTree = "<group>"; };
+		2DECBBAF156543BD927F9060 /* MarketNormalization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketNormalization.swift; sourceTree = "<group>"; };
+		3C09E46E697A48B28707A6F9 /* MarketRefreshCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketRefreshCoordinator.swift; sourceTree = "<group>"; };
+		12BB73C0B17C435C97B4BC29 /* MoneyHeroApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyHeroApp.swift; sourceTree = "<group>"; };
+		E600E3C9AC0D49C3BF51EC8D /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		F39240BDB02B4FCCB4C8BBAA /* YahooChartParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YahooChartParser.swift; sourceTree = "<group>"; };
+		DAE80390E23B49C799F7C5DC /* YahooFinanceClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YahooFinanceClient.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		29A95A7D817D4159AF7509ED /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8EEF045F533E4F5BA22B987A = {
+			isa = PBXGroup;
+			children = (
+				B99EF5DBB9A4413493FF0E01 /* MoneyHero */,
+				CB92F40D387D447F8906BD4F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B99EF5DBB9A4413493FF0E01 /* MoneyHero */ = {
+			isa = PBXGroup;
+			children = (
+				803DA63782104237A8B2D595 /* HoldingsModels.swift */,
+				82D7F1906FD0437194AF8CE8 /* LocalJSONCacheStore.swift */,
+				CA230DA38FF34AA59FFC8A5C /* MarketContracts.swift */,
+				776A4E0F4F6A47CAB8D101F4 /* MarketFetchQueue.swift */,
+				2DECBBAF156543BD927F9060 /* MarketNormalization.swift */,
+				3C09E46E697A48B28707A6F9 /* MarketRefreshCoordinator.swift */,
+				12BB73C0B17C435C97B4BC29 /* MoneyHeroApp.swift */,
+				E600E3C9AC0D49C3BF51EC8D /* RootView.swift */,
+				F39240BDB02B4FCCB4C8BBAA /* YahooChartParser.swift */,
+				DAE80390E23B49C799F7C5DC /* YahooFinanceClient.swift */,
+			);
+			path = Sources/MoneyHero;
+			sourceTree = "<group>";
+		};
+		CB92F40D387D447F8906BD4F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D3F8241C522D4D6E80F773A2 /* MoneyHero.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		99F2BD04C816427694D20C65 /* MoneyHero */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6A27A4A00AFB49119724135D /* Build configuration list for PBXNativeTarget "MoneyHero" */;
+			buildPhases = (
+				D54E24B39C6149DC8418CC32 /* Sources */,
+				29A95A7D817D4159AF7509ED /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MoneyHero;
+			productName = MoneyHero;
+			productReference = D3F8241C522D4D6E80F773A2 /* MoneyHero.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		36F7D4FCF4C9443694FFA81F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2630;
+				LastUpgradeCheck = 2630;
+				TargetAttributes = {
+					99F2BD04C816427694D20C65 = {
+						CreatedOnToolsVersion = 26.3;
+					};
+				};
+			};
+			buildConfigurationList = 255AFF8D828B431287A82525 /* Build configuration list for PBXProject "MoneyHero" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8EEF045F533E4F5BA22B987A;
+			productRefGroup = CB92F40D387D447F8906BD4F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				99F2BD04C816427694D20C65 /* MoneyHero */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D54E24B39C6149DC8418CC32 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C81EFB2BDDF54499A5CBC968 /* HoldingsModels.swift in Sources */,
+				13ECD25FEB1E4023B5F8F824 /* LocalJSONCacheStore.swift in Sources */,
+				A3996DAA9E024CE687A477B6 /* MarketContracts.swift in Sources */,
+				6E1BB65579014147879B1BF8 /* MarketFetchQueue.swift in Sources */,
+				E06BECB8A5984FF7B611C899 /* MarketNormalization.swift in Sources */,
+				7AB9AD426B964F9389FFA3F9 /* MarketRefreshCoordinator.swift in Sources */,
+				46C0966802CB48FB900C95E5 /* MoneyHeroApp.swift in Sources */,
+				660C09A466664E83A5905B1B /* RootView.swift in Sources */,
+				7D5596A5C14D4123A8E84223 /* YahooChartParser.swift in Sources */,
+				944C0BF4B90E42ABB273B267 /* YahooFinanceClient.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		11BF03C08E2E45F88514847B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		6B9B68412C9A447AB5A493DF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		80E4E1C560334F8B99BFD12C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Money Hero";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = app.moneyhero.mobile;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CD925CB102174C2E982DB0F5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Money Hero";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = app.moneyhero.mobile;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		255AFF8D828B431287A82525 /* Build configuration list for PBXProject "MoneyHero" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				11BF03C08E2E45F88514847B /* Debug */,
+				6B9B68412C9A447AB5A493DF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6A27A4A00AFB49119724135D /* Build configuration list for PBXNativeTarget "MoneyHero" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				80E4E1C560334F8B99BFD12C /* Debug */,
+				CD925CB102174C2E982DB0F5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 36F7D4FCF4C9443694FFA81F /* Project object */;
+}
