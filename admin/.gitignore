@@ -1,0 +1,12 @@
+# Deny-by-default. Add a "!path" line for any new tracked file or directory.
+
+*
+
+# Self-reference and human-readable description of the package
+!.gitignore
+
+# Top-level guide read by every AI agent at task start
+!AGENTS.md
+
+# Project README with high-level overview and setup instructions
+!README.md

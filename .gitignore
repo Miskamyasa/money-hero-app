@@ -1,0 +1,27 @@
+# Deny-by-default strategy: everything is ignored, then explicit allowlist
+# entries un-ignore tracked content. Each project subdirectory has its own
+# .gitignore that follows the same pattern. Adding a new top-level file or
+# directory requires adding an explicit "!name" rule below.
+
+*
+
+!.gitignore
+
+# Tool versions for mise (managed at the repo root)
+!mise.toml
+
+# Development container definition (used by VS Code / opencode devcontainer)
+!.devcontainer/
+!.devcontainer/devcontainer.json
+
+# Project specifications and architecture documentation
+!docs/
+!docs/*.md
+
+# Monorepo project directories. Each owns its own .gitignore.
+!api/
+!admin/
+!app/
+
+# Top-level guide read by every AI agent at task start
+!AGENTS.md

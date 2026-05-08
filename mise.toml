@@ -1,0 +1,11 @@
+[tools]
+node = "24.14.0"
+# Npm tools
+npm = "11.13.0"
+"npm:@devcontainers/cli" = "0.85.0"
+# Aqua tools
+"aqua:opencode" = "1.14.40"
+rtk = "0.39.0"
+
+[settings]
+lockfile = true

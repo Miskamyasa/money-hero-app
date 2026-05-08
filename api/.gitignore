@@ -1,0 +1,40 @@
+# Deny-by-default. Add a "!path" line for any new tracked file or directory.
+
+*
+
+# Self-reference and human-readable description of the package
+!.gitignore
+
+# Top-level guide read by every AI agent at task start
+!AGENTS.md
+
+# Project README with high-level overview and setup instructions
+!README.md
+
+# Go module manifest and resolved dependency hashes
+!go.mod
+!go.sum
+
+# Lint and codegen configuration consumed by tooling at the repo root
+!.golangci.yml
+!sqlc.yaml
+
+# Application entry points (cmd/api, cmd/worker)
+!cmd/
+!cmd/**
+
+# Internal packages (services, repositories, helpers); only this binary's code
+!internal/
+!internal/**
+
+# Database migrations: SQL files plus the embed.go that ships them in the binary
+!migrations/
+!migrations/*.sql
+!migrations/*.go
+
+# sqlc query sources used to generate code into internal/db
+!sql/
+!sql/**
+
+# Build artifacts produced by `go build -o bin/...`; never committed
+bin/
