@@ -6,6 +6,8 @@
 *
 
 !.gitignore
+!README.md
+!LICENSE
 
 # Tool versions for mise (managed at the repo root)
 !mise.toml
@@ -24,35 +26,13 @@
 !app/
 !swift/
 
-# Planned Swift app scaffold allowlist
-!swift/README.md
-!swift/specs/
-!swift/specs/specs.md
-!swift/Sources/
-!swift/Sources/**
-!swift/Tests/
-!swift/Tests/**
-!swift/Resources/
-!swift/Resources/**
-!swift/*.xcodeproj/
-!swift/*.xcodeproj/**
-!swift/*.xcworkspace/
-!swift/*.xcworkspace/**
-!swift/Package.swift
-
-# Keep SwiftPM/Xcode generated user state ignored under swift/
-swift/.build/
-swift/.swiftpm/
-swift/**/xcuserdata/
-swift/**/*.xcuserstate
-
-# Assets directory for static files, images, etc. (if applicable)
+# Assets directory for static files, images, etc.
 !assets/
 !assets/**
-
 
 # Top-level guide read by every AI agent at task start
 !AGENTS.md
 
+# Screenshots directory for visual communication with Agents
 !screenshots/
 !screenshots/**
