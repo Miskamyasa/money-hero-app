@@ -1,37 +1,8 @@
 import Foundation
 
-public struct MarketFetchQueueProgress: Equatable, Sendable {
-    public let totalCount: Int
-    public let completedCount: Int
-    public let running: Bool
-    public let currentLabel: String?
-
-    public init(totalCount: Int, completedCount: Int, running: Bool, currentLabel: String?) {
-        self.totalCount = totalCount
-        self.completedCount = completedCount
-        self.running = running
-        self.currentLabel = currentLabel
-    }
-}
-
-public struct MarketFetchQueueTask: Sendable {
-    public let cacheKey: String
-    public let label: String
-    public let operation: @Sendable () async throws -> Void
-
-    public init(
-        cacheKey: String,
-        label: String,
-        operation: @escaping @Sendable () async throws -> Void
-    ) {
-        self.cacheKey = cacheKey
-        self.label = label
-        self.operation = operation
-    }
-}
-
 public actor MarketFetchQueue {
     public typealias Completion = @Sendable (Result<Void, Error>) -> Void
+    public typealias ProgressObserver = @Sendable (MarketFetchQueueProgress) -> Void
 
     private let minimumIntervalNanoseconds: UInt64 = 1_000_000_000
 
@@ -41,8 +12,15 @@ public actor MarketFetchQueue {
     private var completedCount: Int = 0
     private var workerTask: Task<Void, Never>?
     private var lastTaskStartedAt: ContinuousClock.Instant?
+    private var progressObserver: ProgressObserver?
+    private var generation: Int = 0
 
     public init() {}
+
+    public func setProgressObserver(_ observer: ProgressObserver?) {
+        progressObserver = observer
+        notifyProgressChanged()
+    }
 
     @discardableResult
     public func enqueue(task: MarketFetchQueueTask, completion: Completion? = nil) -> MarketFetchQueueProgress {
@@ -56,7 +34,7 @@ public actor MarketFetchQueue {
             return progress
         }
 
-        if var runningTask, runningTask.task.cacheKey == normalizedKey {
+        if var runningTask, runningTask.task.cacheKey == normalizedKey, runningTask.generation == generation {
             if let completion {
                 runningTask.completions.append(completion)
                 self.runningTask = runningTask
@@ -72,7 +50,10 @@ public actor MarketFetchQueue {
             return progress
         }
 
-        var pending = PendingTask(task: MarketFetchQueueTask(cacheKey: normalizedKey, label: task.label, operation: task.operation))
+        var pending = PendingTask(
+            task: MarketFetchQueueTask(cacheKey: normalizedKey, label: task.label, operation: task.operation),
+            generation: generation
+        )
         if let completion {
             pending.completions.append(completion)
         }
@@ -80,22 +61,30 @@ public actor MarketFetchQueue {
         pendingKeys.append(normalizedKey)
 
         ensureWorker()
+        notifyProgressChanged()
         return progress
     }
 
     @discardableResult
-    public func clearPending() -> MarketFetchQueueProgress {
+    public func clearPending(resetCompletedCount: Bool = false) -> MarketFetchQueueProgress {
+        generation += 1
         pendingKeys.removeAll()
         pendingByKey.removeAll()
+        if resetCompletedCount {
+            completedCount = 0
+        }
+        notifyProgressChanged()
         return progress
     }
 
     public var progress: MarketFetchQueueProgress {
-        MarketFetchQueueProgress(
-            totalCount: completedCount + pendingKeys.count + (runningTask == nil ? 0 : 1),
+        let currentPendingCount = pendingByKey.values.filter { $0.generation == generation }.count
+        let currentRunningTask = runningTask?.generation == generation ? runningTask : nil
+        return MarketFetchQueueProgress(
+            totalCount: completedCount + currentPendingCount + (currentRunningTask == nil ? 0 : 1),
             completedCount: completedCount,
-            running: runningTask != nil,
-            currentLabel: runningTask?.task.label
+            running: currentRunningTask != nil,
+            currentLabel: currentRunningTask?.task.label
         )
     }
 
@@ -127,8 +116,11 @@ public actor MarketFetchQueue {
                 result = .failure(error)
             }
 
-            completedCount += 1
+            if next.generation == generation {
+                completedCount += 1
+            }
             runningTask = nil
+            notifyProgressChanged()
 
             for completion in next.completions {
                 Task {
@@ -148,9 +140,14 @@ public actor MarketFetchQueue {
             return nil
         }
 
-        let running = RunningTask(task: pending.task, completions: pending.completions)
+        let running = RunningTask(task: pending.task, completions: pending.completions, generation: pending.generation)
         runningTask = running
+        notifyProgressChanged()
         return running
+    }
+
+    private func notifyProgressChanged() {
+        progressObserver?(progress)
     }
 
     private func waitForMinimumIntervalSinceLastStart() async {
@@ -169,16 +166,14 @@ public actor MarketFetchQueue {
     }
 }
 
-public enum MarketFetchQueueError: Error, Equatable, Sendable {
-    case invalidCacheKey
-}
-
 private struct PendingTask {
     let task: MarketFetchQueueTask
+    let generation: Int
     var completions: [MarketFetchQueue.Completion] = []
 }
 
 private struct RunningTask {
     let task: MarketFetchQueueTask
     var completions: [MarketFetchQueue.Completion]
+    let generation: Int
 }

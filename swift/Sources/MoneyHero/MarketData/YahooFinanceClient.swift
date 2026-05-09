@@ -24,16 +24,17 @@ public enum YahooFinanceClientError: Error, Sendable {
     case unexpectedStatusCode(statusCode: Int, url: URL)
 }
 
-public actor YahooFinanceClient {
+public actor YahooFinanceClient: MarketDataProviding {
     public static let sp500Symbol = "^GSPC"
     public static let goldSymbol = "GC=F"
+    public static let usDollarIndexSymbol = "DX-Y.NYB"
 
-    private let userAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile Safari/604.1"
-    private let sessionTTL: TimeInterval = 30 * 60
+    let userAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile Safari/604.1"
+    let sessionTTL: TimeInterval = 30 * 60
 
-    private let session: URLSession
-    private let manualRedirectSession: URLSession
-    private var yahooSession: YahooSession?
+    let session: URLSession
+    let manualRedirectSession: URLSession
+    var yahooSession: YahooSession?
 
     public init(session: URLSession = .shared) {
         self.session = session
@@ -139,85 +140,6 @@ public actor YahooFinanceClient {
         return try await performRequest(url: url, cookieHeader: yahooSession.cookieHeader, includeUserAgent: true)
     }
 
-    private func ensureSession(forceRemint: Bool = false) async throws -> YahooSession {
-        if !forceRemint, let existing = yahooSession, Date().timeIntervalSince(existing.createdAt) < sessionTTL {
-            return existing
-        }
-
-        let minted = try await mintSession()
-        yahooSession = minted
-        return minted
-    }
-
-    private func mintSession() async throws -> YahooSession {
-        let cookieHeader = try await fetchSeedCookieHeader()
-        let crumb = try await fetchCrumb(cookieHeader: cookieHeader)
-        return YahooSession(cookieHeader: cookieHeader, crumb: crumb, createdAt: Date())
-    }
-
-    private func fetchSeedCookieHeader() async throws -> String {
-        guard let url = URL(string: "https://fc.yahoo.com/") else {
-            throw YahooFinanceClientError.invalidURL("https://fc.yahoo.com/")
-        }
-
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-
-        let (_, response) = try await manualRedirectSession.data(for: request)
-        guard let httpResponse = response as? HTTPURLResponse else {
-            throw YahooFinanceClientError.nonHTTPResponse
-        }
-
-        var headerFields: [String: String] = [:]
-        for (key, value) in httpResponse.allHeaderFields {
-            guard let keyString = key as? String else {
-                continue
-            }
-            guard let valueString = value as? String else {
-                continue
-            }
-            headerFields[keyString] = valueString
-        }
-
-        let cookies = HTTPCookie.cookies(withResponseHeaderFields: headerFields, for: url)
-        let header = cookies
-            .map { "\($0.name)=\($0.value)" }
-            .joined(separator: "; ")
-
-        guard !header.isEmpty else {
-            throw YahooFinanceClientError.missingSeedCookies
-        }
-
-        return header
-    }
-
-    private func fetchCrumb(cookieHeader: String) async throws -> String {
-        guard let url = URL(string: "https://query2.finance.yahoo.com/v1/test/getcrumb") else {
-            throw YahooFinanceClientError.invalidURL("https://query2.finance.yahoo.com/v1/test/getcrumb")
-        }
-
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-        request.setValue(cookieHeader, forHTTPHeaderField: "Cookie")
-        request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
-
-        let (data, response) = try await session.data(for: request)
-        guard let httpResponse = response as? HTTPURLResponse else {
-            throw YahooFinanceClientError.nonHTTPResponse
-        }
-
-        guard (200..<300).contains(httpResponse.statusCode) else {
-            throw YahooFinanceClientError.unexpectedStatusCode(statusCode: httpResponse.statusCode, url: url)
-        }
-
-        let crumb = String(data: data, encoding: .utf8)?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-        guard !crumb.isEmpty, crumb != "null" else {
-            throw YahooFinanceClientError.invalidCrumb
-        }
-
-        return crumb
-    }
-
     private func performRequest(url: URL, cookieHeader: String? = nil, includeUserAgent: Bool) async throws -> YahooHTTPResponse {
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
@@ -256,23 +178,5 @@ public actor YahooFinanceClient {
         let twoYearsAndPaddingDays: TimeInterval = 744 * 24 * 60 * 60
         let period1 = Int(referenceDate.addingTimeInterval(-twoYearsAndPaddingDays).timeIntervalSince1970)
         return (period1: period1, period2: period2)
-    }
-}
-
-private struct YahooSession: Sendable {
-    let cookieHeader: String
-    let crumb: String
-    let createdAt: Date
-}
-
-private final class RedirectBlockerDelegate: NSObject, URLSessionTaskDelegate {
-    func urlSession(
-        _ session: URLSession,
-        task: URLSessionTask,
-        willPerformHTTPRedirection response: HTTPURLResponse,
-        newRequest request: URLRequest,
-        completionHandler: @escaping (URLRequest?) -> Void
-    ) {
-        completionHandler(nil)
     }
 }

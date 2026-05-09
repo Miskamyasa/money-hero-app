@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		C81EFB2BDDF54499A5CBC968 /* HoldingsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803DA63782104237A8B2D595 /* HoldingsModels.swift */; };
 		13ECD25FEB1E4023B5F8F824 /* LocalJSONCacheStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D7F1906FD0437194AF8CE8 /* LocalJSONCacheStore.swift */; };
-		A3996DAA9E024CE687A477B6 /* MarketContracts.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA230DA38FF34AA59FFC8A5C /* MarketContracts.swift */; };
 		6E1BB65579014147879B1BF8 /* MarketFetchQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776A4E0F4F6A47CAB8D101F4 /* MarketFetchQueue.swift */; };
 		E06BECB8A5984FF7B611C899 /* MarketNormalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DECBBAF156543BD927F9060 /* MarketNormalization.swift */; };
 		7AB9AD426B964F9389FFA3F9 /* MarketRefreshCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C09E46E697A48B28707A6F9 /* MarketRefreshCoordinator.swift */; };
@@ -17,20 +16,109 @@
 		660C09A466664E83A5905B1B /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E600E3C9AC0D49C3BF51EC8D /* RootView.swift */; };
 		7D5596A5C14D4123A8E84223 /* YahooChartParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39240BDB02B4FCCB4C8BBAA /* YahooChartParser.swift */; };
 		944C0BF4B90E42ABB273B267 /* YahooFinanceClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE80390E23B49C799F7C5DC /* YahooFinanceClient.swift */; };
+		B00000000000000000000001 /* AppTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000001 /* AppTab.swift */; };
+		B00000000000000000000003 /* DashboardDisplayFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000003 /* DashboardDisplayFormatting.swift */; };
+		B00000000000000000000004 /* DashboardState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000004 /* DashboardState.swift */; };
+		B00000000000000000000005 /* DashboardStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000005 /* DashboardStyle.swift */; };
+		B00000000000000000000006 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000006 /* DashboardView.swift */; };
+		B00000000000000000000008 /* MarketDataProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000008 /* MarketDataProtocols.swift */; };
+		B00000000000000000000009 /* PlaceholderViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000009 /* PlaceholderViews.swift */; };
+		C00000000000000000000001 /* CurrencyDashboardCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00000000000000000000001 /* CurrencyDashboardCard.swift */; };
+		C00000000000000000000002 /* DashboardArcBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00000000000000000000002 /* DashboardArcBackground.swift */; };
+		C00000000000000000000003 /* DashboardCurrenciesSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00000000000000000000003 /* DashboardCurrenciesSection.swift */; };
+		C00000000000000000000004 /* DashboardExpectedBalanceSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00000000000000000000004 /* DashboardExpectedBalanceSection.swift */; };
+		C00000000000000000000005 /* DashboardHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00000000000000000000005 /* DashboardHeaderView.swift */; };
+		C00000000000000000000006 /* DashboardMarketsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00000000000000000000006 /* DashboardMarketsSection.swift */; };
+		C00000000000000000000007 /* DashboardRefreshStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00000000000000000000007 /* DashboardRefreshStatusView.swift */; };
+		C00000000000000000000008 /* DashboardTotalBalanceSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00000000000000000000008 /* DashboardTotalBalanceSection.swift */; };
+		C00000000000000000000009 /* MarketDashboardCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00000000000000000000009 /* MarketDashboardCard.swift */; };
+		C00000000000000000000010 /* MarketIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00000000000000000000010 /* MarketIcon.swift */; };
+		C00000000000000000000011 /* MoneyHeroLogoMark.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00000000000000000000011 /* MoneyHeroLogoMark.swift */; };
+		C00000000000000000000012 /* NumberedSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00000000000000000000012 /* NumberedSectionHeader.swift */; };
+		C00000000000000000000013 /* PeriodChangeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00000000000000000000013 /* PeriodChangeLabel.swift */; };
+		C00000000000000000000014 /* ProjectionCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00000000000000000000014 /* ProjectionCard.swift */; };
+		C00000000000000000000015 /* SparklineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00000000000000000000015 /* SparklineView.swift */; };
+		C00000000000000000000016 /* MarketRefreshCacheEnvelopeFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00000000000000000000016 /* MarketRefreshCacheEnvelopeFactory.swift */; };
+		C00000000000000000000017 /* MarketRefreshRequestPlanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00000000000000000000017 /* MarketRefreshRequestPlanner.swift */; };
+		C00000000000000000000018 /* MarketRefreshSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00000000000000000000018 /* MarketRefreshSnapshot.swift */; };
+		C00000000000000000000019 /* YahooChartParserSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00000000000000000000019 /* YahooChartParserSupport.swift */; };
+		C00000000000000000000020 /* YahooChartPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00000000000000000000020 /* YahooChartPayload.swift */; };
+		C00000000000000000000021 /* YahooHistoricalSeriesBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00000000000000000000021 /* YahooHistoricalSeriesBuilder.swift */; };
+		C00000000000000000000022 /* YahooQuoteMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00000000000000000000022 /* YahooQuoteMetrics.swift */; };
+		C00000000000000000000023 /* LocalCacheMetadata+Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00000000000000000000023 /* LocalCacheMetadata+Status.swift */; };
+		C00000000000000000000024 /* LocalJSONCacheValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00000000000000000000024 /* LocalJSONCacheValidation.swift */; };
+		C00000000000000000000025 /* MarketFetchQueueTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00000000000000000000025 /* MarketFetchQueueTypes.swift */; };
+		C00000000000000000000026 /* MarketQuoteFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00000000000000000000026 /* MarketQuoteFetcher.swift */; };
+		C00000000000000000000027 /* MarketRefreshActiveWidgetPlanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00000000000000000000027 /* MarketRefreshActiveWidgetPlanner.swift */; };
+		C00000000000000000000028 /* MarketRefreshCacheHydrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00000000000000000000028 /* MarketRefreshCacheHydrator.swift */; };
+		C00000000000000000000029 /* MarketRefreshCoordinatorCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00000000000000000000029 /* MarketRefreshCoordinatorCache.swift */; };
+		C00000000000000000000030 /* MarketRefreshCoordinatorProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00000000000000000000030 /* MarketRefreshCoordinatorProgress.swift */; };
+		C00000000000000000000031 /* MarketRefreshCoordinatorSnapshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00000000000000000000031 /* MarketRefreshCoordinatorSnapshots.swift */; };
+		C00000000000000000000032 /* MarketRefreshSnapshotBroadcaster.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00000000000000000000032 /* MarketRefreshSnapshotBroadcaster.swift */; };
+		C00000000000000000000033 /* YahooPriceNormalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00000000000000000000033 /* YahooPriceNormalization.swift */; };
+		C00000000000000000000034 /* YahooSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00000000000000000000034 /* YahooSession.swift */; };
+		C00000000000000000000035 /* MarketCacheModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00000000000000000000035 /* MarketCacheModels.swift */; };
+		C00000000000000000000036 /* MarketHistoryModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00000000000000000000036 /* MarketHistoryModels.swift */; };
+		C00000000000000000000037 /* MarketProviderModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00000000000000000000037 /* MarketProviderModels.swift */; };
+		C00000000000000000000038 /* MarketQuoteModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00000000000000000000038 /* MarketQuoteModels.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		D3F8241C522D4D6E80F773A2 /* MoneyHero.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoneyHero.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		803DA63782104237A8B2D595 /* HoldingsModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoldingsModels.swift; sourceTree = "<group>"; };
-		82D7F1906FD0437194AF8CE8 /* LocalJSONCacheStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalJSONCacheStore.swift; sourceTree = "<group>"; };
-		CA230DA38FF34AA59FFC8A5C /* MarketContracts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketContracts.swift; sourceTree = "<group>"; };
-		776A4E0F4F6A47CAB8D101F4 /* MarketFetchQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketFetchQueue.swift; sourceTree = "<group>"; };
-		2DECBBAF156543BD927F9060 /* MarketNormalization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketNormalization.swift; sourceTree = "<group>"; };
-		3C09E46E697A48B28707A6F9 /* MarketRefreshCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketRefreshCoordinator.swift; sourceTree = "<group>"; };
-		12BB73C0B17C435C97B4BC29 /* MoneyHeroApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyHeroApp.swift; sourceTree = "<group>"; };
-		E600E3C9AC0D49C3BF51EC8D /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
-		F39240BDB02B4FCCB4C8BBAA /* YahooChartParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YahooChartParser.swift; sourceTree = "<group>"; };
-		DAE80390E23B49C799F7C5DC /* YahooFinanceClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YahooFinanceClient.swift; sourceTree = "<group>"; };
+		803DA63782104237A8B2D595 /* HoldingsModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Domain/HoldingsModels.swift; sourceTree = "<group>"; };
+		82D7F1906FD0437194AF8CE8 /* LocalJSONCacheStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache/LocalJSONCacheStore.swift; sourceTree = "<group>"; };
+		776A4E0F4F6A47CAB8D101F4 /* MarketFetchQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketData/MarketFetchQueue.swift; sourceTree = "<group>"; };
+		2DECBBAF156543BD927F9060 /* MarketNormalization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Domain/MarketNormalization.swift; sourceTree = "<group>"; };
+		3C09E46E697A48B28707A6F9 /* MarketRefreshCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketData/MarketRefreshCoordinator.swift; sourceTree = "<group>"; };
+		12BB73C0B17C435C97B4BC29 /* MoneyHeroApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App/MoneyHeroApp.swift; sourceTree = "<group>"; };
+		E600E3C9AC0D49C3BF51EC8D /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App/RootView.swift; sourceTree = "<group>"; };
+		F39240BDB02B4FCCB4C8BBAA /* YahooChartParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketData/YahooChartParser.swift; sourceTree = "<group>"; };
+		DAE80390E23B49C799F7C5DC /* YahooFinanceClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketData/YahooFinanceClient.swift; sourceTree = "<group>"; };
+		A00000000000000000000001 /* AppTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App/AppTab.swift; sourceTree = "<group>"; };
+		A00000000000000000000003 /* DashboardDisplayFormatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard/DashboardDisplayFormatting.swift; sourceTree = "<group>"; };
+		A00000000000000000000004 /* DashboardState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard/DashboardState.swift; sourceTree = "<group>"; };
+		A00000000000000000000005 /* DashboardStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard/DashboardStyle.swift; sourceTree = "<group>"; };
+		A00000000000000000000006 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard/DashboardView.swift; sourceTree = "<group>"; };
+		A00000000000000000000008 /* MarketDataProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketData/MarketDataProtocols.swift; sourceTree = "<group>"; };
+		A00000000000000000000009 /* PlaceholderViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedUI/PlaceholderViews.swift; sourceTree = "<group>"; };
+		D00000000000000000000001 /* CurrencyDashboardCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard/CurrencyDashboardCard.swift; sourceTree = "<group>"; };
+		D00000000000000000000002 /* DashboardArcBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard/DashboardArcBackground.swift; sourceTree = "<group>"; };
+		D00000000000000000000003 /* DashboardCurrenciesSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard/DashboardCurrenciesSection.swift; sourceTree = "<group>"; };
+		D00000000000000000000004 /* DashboardExpectedBalanceSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard/DashboardExpectedBalanceSection.swift; sourceTree = "<group>"; };
+		D00000000000000000000005 /* DashboardHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard/DashboardHeaderView.swift; sourceTree = "<group>"; };
+		D00000000000000000000006 /* DashboardMarketsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard/DashboardMarketsSection.swift; sourceTree = "<group>"; };
+		D00000000000000000000007 /* DashboardRefreshStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard/DashboardRefreshStatusView.swift; sourceTree = "<group>"; };
+		D00000000000000000000008 /* DashboardTotalBalanceSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard/DashboardTotalBalanceSection.swift; sourceTree = "<group>"; };
+		D00000000000000000000009 /* MarketDashboardCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard/MarketDashboardCard.swift; sourceTree = "<group>"; };
+		D00000000000000000000010 /* MarketIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard/MarketIcon.swift; sourceTree = "<group>"; };
+		D00000000000000000000011 /* MoneyHeroLogoMark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard/MoneyHeroLogoMark.swift; sourceTree = "<group>"; };
+		D00000000000000000000012 /* NumberedSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard/NumberedSectionHeader.swift; sourceTree = "<group>"; };
+		D00000000000000000000013 /* PeriodChangeLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard/PeriodChangeLabel.swift; sourceTree = "<group>"; };
+		D00000000000000000000014 /* ProjectionCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard/ProjectionCard.swift; sourceTree = "<group>"; };
+		D00000000000000000000015 /* SparklineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard/SparklineView.swift; sourceTree = "<group>"; };
+		D00000000000000000000016 /* MarketRefreshCacheEnvelopeFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketData/MarketRefreshCacheEnvelopeFactory.swift; sourceTree = "<group>"; };
+		D00000000000000000000017 /* MarketRefreshRequestPlanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketData/MarketRefreshRequestPlanner.swift; sourceTree = "<group>"; };
+		D00000000000000000000018 /* MarketRefreshSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketData/MarketRefreshSnapshot.swift; sourceTree = "<group>"; };
+		D00000000000000000000019 /* YahooChartParserSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketData/YahooChartParserSupport.swift; sourceTree = "<group>"; };
+		D00000000000000000000020 /* YahooChartPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketData/YahooChartPayload.swift; sourceTree = "<group>"; };
+		D00000000000000000000021 /* YahooHistoricalSeriesBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketData/YahooHistoricalSeriesBuilder.swift; sourceTree = "<group>"; };
+		D00000000000000000000022 /* YahooQuoteMetrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketData/YahooQuoteMetrics.swift; sourceTree = "<group>"; };
+		D00000000000000000000023 /* LocalCacheMetadata+Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Cache/LocalCacheMetadata+Status.swift"; sourceTree = "<group>"; };
+		D00000000000000000000024 /* LocalJSONCacheValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache/LocalJSONCacheValidation.swift; sourceTree = "<group>"; };
+		D00000000000000000000025 /* MarketFetchQueueTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketData/MarketFetchQueueTypes.swift; sourceTree = "<group>"; };
+		D00000000000000000000026 /* MarketQuoteFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketData/MarketQuoteFetcher.swift; sourceTree = "<group>"; };
+		D00000000000000000000027 /* MarketRefreshActiveWidgetPlanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketData/MarketRefreshActiveWidgetPlanner.swift; sourceTree = "<group>"; };
+		D00000000000000000000028 /* MarketRefreshCacheHydrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketData/MarketRefreshCacheHydrator.swift; sourceTree = "<group>"; };
+		D00000000000000000000029 /* MarketRefreshCoordinatorCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketData/MarketRefreshCoordinatorCache.swift; sourceTree = "<group>"; };
+		D00000000000000000000030 /* MarketRefreshCoordinatorProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketData/MarketRefreshCoordinatorProgress.swift; sourceTree = "<group>"; };
+		D00000000000000000000031 /* MarketRefreshCoordinatorSnapshots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketData/MarketRefreshCoordinatorSnapshots.swift; sourceTree = "<group>"; };
+		D00000000000000000000032 /* MarketRefreshSnapshotBroadcaster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketData/MarketRefreshSnapshotBroadcaster.swift; sourceTree = "<group>"; };
+		D00000000000000000000033 /* YahooPriceNormalization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketData/YahooPriceNormalization.swift; sourceTree = "<group>"; };
+		D00000000000000000000034 /* YahooSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketData/YahooSession.swift; sourceTree = "<group>"; };
+		D00000000000000000000035 /* MarketCacheModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Domain/MarketCacheModels.swift; sourceTree = "<group>"; };
+		D00000000000000000000036 /* MarketHistoryModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Domain/MarketHistoryModels.swift; sourceTree = "<group>"; };
+		D00000000000000000000037 /* MarketProviderModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Domain/MarketProviderModels.swift; sourceTree = "<group>"; };
+		D00000000000000000000038 /* MarketQuoteModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Domain/MarketQuoteModels.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,16 +143,60 @@
 		B99EF5DBB9A4413493FF0E01 /* MoneyHero */ = {
 			isa = PBXGroup;
 			children = (
+				A00000000000000000000001 /* AppTab.swift */,
+				D00000000000000000000001 /* CurrencyDashboardCard.swift */,
+				D00000000000000000000002 /* DashboardArcBackground.swift */,
+				D00000000000000000000003 /* DashboardCurrenciesSection.swift */,
+				A00000000000000000000003 /* DashboardDisplayFormatting.swift */,
+				D00000000000000000000004 /* DashboardExpectedBalanceSection.swift */,
+				D00000000000000000000005 /* DashboardHeaderView.swift */,
+				D00000000000000000000006 /* DashboardMarketsSection.swift */,
+				D00000000000000000000007 /* DashboardRefreshStatusView.swift */,
+				A00000000000000000000004 /* DashboardState.swift */,
+				A00000000000000000000005 /* DashboardStyle.swift */,
+				D00000000000000000000008 /* DashboardTotalBalanceSection.swift */,
+				A00000000000000000000006 /* DashboardView.swift */,
 				803DA63782104237A8B2D595 /* HoldingsModels.swift */,
+				D00000000000000000000023 /* LocalCacheMetadata+Status.swift */,
 				82D7F1906FD0437194AF8CE8 /* LocalJSONCacheStore.swift */,
-				CA230DA38FF34AA59FFC8A5C /* MarketContracts.swift */,
+				D00000000000000000000024 /* LocalJSONCacheValidation.swift */,
+				D00000000000000000000035 /* MarketCacheModels.swift */,
+				D00000000000000000000009 /* MarketDashboardCard.swift */,
+				A00000000000000000000008 /* MarketDataProtocols.swift */,
 				776A4E0F4F6A47CAB8D101F4 /* MarketFetchQueue.swift */,
+				D00000000000000000000025 /* MarketFetchQueueTypes.swift */,
+				D00000000000000000000036 /* MarketHistoryModels.swift */,
+				D00000000000000000000010 /* MarketIcon.swift */,
 				2DECBBAF156543BD927F9060 /* MarketNormalization.swift */,
+				D00000000000000000000037 /* MarketProviderModels.swift */,
+				D00000000000000000000038 /* MarketQuoteModels.swift */,
+				D00000000000000000000026 /* MarketQuoteFetcher.swift */,
+				D00000000000000000000027 /* MarketRefreshActiveWidgetPlanner.swift */,
+				D00000000000000000000016 /* MarketRefreshCacheEnvelopeFactory.swift */,
+				D00000000000000000000028 /* MarketRefreshCacheHydrator.swift */,
 				3C09E46E697A48B28707A6F9 /* MarketRefreshCoordinator.swift */,
+				D00000000000000000000029 /* MarketRefreshCoordinatorCache.swift */,
+				D00000000000000000000030 /* MarketRefreshCoordinatorProgress.swift */,
+				D00000000000000000000031 /* MarketRefreshCoordinatorSnapshots.swift */,
+				D00000000000000000000017 /* MarketRefreshRequestPlanner.swift */,
+				D00000000000000000000018 /* MarketRefreshSnapshot.swift */,
+				D00000000000000000000032 /* MarketRefreshSnapshotBroadcaster.swift */,
 				12BB73C0B17C435C97B4BC29 /* MoneyHeroApp.swift */,
+				D00000000000000000000011 /* MoneyHeroLogoMark.swift */,
+				D00000000000000000000012 /* NumberedSectionHeader.swift */,
+				A00000000000000000000009 /* PlaceholderViews.swift */,
+				D00000000000000000000013 /* PeriodChangeLabel.swift */,
+				D00000000000000000000014 /* ProjectionCard.swift */,
 				E600E3C9AC0D49C3BF51EC8D /* RootView.swift */,
+				D00000000000000000000015 /* SparklineView.swift */,
 				F39240BDB02B4FCCB4C8BBAA /* YahooChartParser.swift */,
+				D00000000000000000000019 /* YahooChartParserSupport.swift */,
+				D00000000000000000000020 /* YahooChartPayload.swift */,
 				DAE80390E23B49C799F7C5DC /* YahooFinanceClient.swift */,
+				D00000000000000000000021 /* YahooHistoricalSeriesBuilder.swift */,
+				D00000000000000000000033 /* YahooPriceNormalization.swift */,
+				D00000000000000000000022 /* YahooQuoteMetrics.swift */,
+				D00000000000000000000034 /* YahooSession.swift */,
 			);
 			path = Sources/MoneyHero;
 			sourceTree = "<group>";
@@ -134,16 +266,60 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B00000000000000000000001 /* AppTab.swift in Sources */,
+				C00000000000000000000001 /* CurrencyDashboardCard.swift in Sources */,
+				C00000000000000000000002 /* DashboardArcBackground.swift in Sources */,
+				C00000000000000000000003 /* DashboardCurrenciesSection.swift in Sources */,
+				B00000000000000000000003 /* DashboardDisplayFormatting.swift in Sources */,
+				C00000000000000000000004 /* DashboardExpectedBalanceSection.swift in Sources */,
+				C00000000000000000000005 /* DashboardHeaderView.swift in Sources */,
+				C00000000000000000000006 /* DashboardMarketsSection.swift in Sources */,
+				C00000000000000000000007 /* DashboardRefreshStatusView.swift in Sources */,
+				B00000000000000000000004 /* DashboardState.swift in Sources */,
+				B00000000000000000000005 /* DashboardStyle.swift in Sources */,
+				C00000000000000000000008 /* DashboardTotalBalanceSection.swift in Sources */,
+				B00000000000000000000006 /* DashboardView.swift in Sources */,
 				C81EFB2BDDF54499A5CBC968 /* HoldingsModels.swift in Sources */,
+				C00000000000000000000023 /* LocalCacheMetadata+Status.swift in Sources */,
 				13ECD25FEB1E4023B5F8F824 /* LocalJSONCacheStore.swift in Sources */,
-				A3996DAA9E024CE687A477B6 /* MarketContracts.swift in Sources */,
+				C00000000000000000000024 /* LocalJSONCacheValidation.swift in Sources */,
+				C00000000000000000000009 /* MarketDashboardCard.swift in Sources */,
+				C00000000000000000000035 /* MarketCacheModels.swift in Sources */,
+				B00000000000000000000008 /* MarketDataProtocols.swift in Sources */,
 				6E1BB65579014147879B1BF8 /* MarketFetchQueue.swift in Sources */,
+				C00000000000000000000025 /* MarketFetchQueueTypes.swift in Sources */,
+				C00000000000000000000036 /* MarketHistoryModels.swift in Sources */,
+				C00000000000000000000010 /* MarketIcon.swift in Sources */,
 				E06BECB8A5984FF7B611C899 /* MarketNormalization.swift in Sources */,
+				C00000000000000000000037 /* MarketProviderModels.swift in Sources */,
+				C00000000000000000000038 /* MarketQuoteModels.swift in Sources */,
+				C00000000000000000000026 /* MarketQuoteFetcher.swift in Sources */,
+				C00000000000000000000027 /* MarketRefreshActiveWidgetPlanner.swift in Sources */,
+				C00000000000000000000016 /* MarketRefreshCacheEnvelopeFactory.swift in Sources */,
+				C00000000000000000000028 /* MarketRefreshCacheHydrator.swift in Sources */,
 				7AB9AD426B964F9389FFA3F9 /* MarketRefreshCoordinator.swift in Sources */,
+				C00000000000000000000029 /* MarketRefreshCoordinatorCache.swift in Sources */,
+				C00000000000000000000030 /* MarketRefreshCoordinatorProgress.swift in Sources */,
+				C00000000000000000000031 /* MarketRefreshCoordinatorSnapshots.swift in Sources */,
+				C00000000000000000000017 /* MarketRefreshRequestPlanner.swift in Sources */,
+				C00000000000000000000018 /* MarketRefreshSnapshot.swift in Sources */,
+				C00000000000000000000032 /* MarketRefreshSnapshotBroadcaster.swift in Sources */,
 				46C0966802CB48FB900C95E5 /* MoneyHeroApp.swift in Sources */,
+				C00000000000000000000011 /* MoneyHeroLogoMark.swift in Sources */,
+				C00000000000000000000012 /* NumberedSectionHeader.swift in Sources */,
+				B00000000000000000000009 /* PlaceholderViews.swift in Sources */,
+				C00000000000000000000013 /* PeriodChangeLabel.swift in Sources */,
+				C00000000000000000000014 /* ProjectionCard.swift in Sources */,
 				660C09A466664E83A5905B1B /* RootView.swift in Sources */,
+				C00000000000000000000015 /* SparklineView.swift in Sources */,
 				7D5596A5C14D4123A8E84223 /* YahooChartParser.swift in Sources */,
+				C00000000000000000000019 /* YahooChartParserSupport.swift in Sources */,
+				C00000000000000000000020 /* YahooChartPayload.swift in Sources */,
 				944C0BF4B90E42ABB273B267 /* YahooFinanceClient.swift in Sources */,
+				C00000000000000000000021 /* YahooHistoricalSeriesBuilder.swift in Sources */,
+				C00000000000000000000033 /* YahooPriceNormalization.swift in Sources */,
+				C00000000000000000000022 /* YahooQuoteMetrics.swift in Sources */,
+				C00000000000000000000034 /* YahooSession.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

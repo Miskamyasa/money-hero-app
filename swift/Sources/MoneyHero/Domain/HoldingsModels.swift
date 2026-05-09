@@ -41,7 +41,7 @@ public struct CurrencyWidgetSetting: Codable, Equatable, Sendable {
         self.symbols = symbols
     }
 
-    public static let `default` = CurrencyWidgetSetting(symbols: ["USD", "ILS", "EUR", "RUB"])
+    public static let `default` = CurrencyWidgetSetting(symbols: ["USD", "EUR", "GBP"])
 }
 
 public struct MarketTickerSetting: Codable, Equatable, Sendable {
