@@ -38,6 +38,13 @@ import Testing
             await collector.append(snapshot)
         }
     }
+    for _ in 0..<50 {
+        let values = await collector.values
+        if !values.isEmpty {
+            break
+        }
+        try await Task.sleep(for: .milliseconds(1))
+    }
 
     await coordinator.refreshOnPullToRefresh(
         holdings: [],

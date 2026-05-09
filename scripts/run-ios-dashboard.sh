@@ -10,6 +10,7 @@ DEVICE_ID="${DEVICE_ID:-$DEFAULT_DEVICE_ID}"
 DERIVED_DATA="${DERIVED_DATA:-/tmp/MoneyHeroRunDerivedData}"
 BUILD_PRODUCTS_DIR="$DERIVED_DATA/Build/Products/Debug-iphonesimulator"
 BUILD_INTERMEDIATES_DIR="$DERIVED_DATA/Build/Intermediates.noindex"
+MODULE_CACHE_DIR="$DERIVED_DATA/ModuleCache.noindex"
 SCREENSHOT_PATH="${SCREENSHOT_PATH:-$SCREENSHOT_DIR/dashboard-after-refactor.png}"
 BUNDLE_ID="${BUNDLE_ID:-app.moneyhero.mobile}"
 
@@ -19,10 +20,12 @@ echo "Building MoneyHero for simulator $DEVICE_ID"
 rm -rf "$DERIVED_DATA"
 xcodebuild \
   -project "$SWIFT_DIR/MoneyHero.xcodeproj" \
-  -target MoneyHero \
+  -scheme MoneyHero \
   -configuration Debug \
   -sdk iphonesimulator \
+  -derivedDataPath "$DERIVED_DATA" \
   CODE_SIGNING_ALLOWED=NO \
+  CLANG_MODULE_CACHE_PATH="$MODULE_CACHE_DIR" \
   ONLY_ACTIVE_ARCH=YES \
   CONFIGURATION_BUILD_DIR="$BUILD_PRODUCTS_DIR" \
   OBJROOT="$BUILD_INTERMEDIATES_DIR" \

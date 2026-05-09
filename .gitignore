@@ -36,3 +36,7 @@
 # Screenshots directory for visual communication with Agents
 !screenshots/
 !screenshots/**
+
+# Local project scripts
+!scripts/
+!scripts/**
