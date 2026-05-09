@@ -1,0 +1,29 @@
+# Deny-by-default. Add a "!path" line for any new tracked file or directory.
+
+*
+
+# Self-reference and human-readable description of the package
+!.gitignore
+!README.md
+
+# Project specifications and architecture documentation
+!specs/
+!specs/*.md
+
+# Flutter package manifest and static analysis configuration
+!pubspec.yaml
+!analysis_options.yaml
+
+# Application source and tests
+!lib/
+!lib/**
+!test/
+!test/**
+
+# Flutter/Dart generated outputs; never committed
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+build/
+coverage/

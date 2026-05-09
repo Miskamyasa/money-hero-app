@@ -25,6 +25,7 @@
 !admin/
 !app/
 !swift/
+!flutter/
 
 # Assets directory for static files, images, etc.
 !assets/
