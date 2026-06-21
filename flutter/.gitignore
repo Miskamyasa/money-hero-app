@@ -16,14 +16,8 @@
 
 # Application source and tests
 !lib/
-!lib/**
+!lib/**/
+!lib/**/*.dart
 !test/
-!test/**
-
-# Flutter/Dart generated outputs; never committed
-.dart_tool/
-.flutter-plugins
-.flutter-plugins-dependencies
-.packages
-build/
-coverage/
+!test/**/
+!test/**/*.dart

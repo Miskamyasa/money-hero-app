@@ -21,9 +21,16 @@ class DashboardState extends ChangeNotifier {
 
   factory DashboardState.live() {
     try {
-      return DashboardState(coordinator: MarketRefreshCoordinator(cacheStore: LocalJsonCacheStore()));
+      return DashboardState(
+        coordinator: MarketRefreshCoordinator(
+          cacheStore: LocalJsonCacheStore(),
+        ),
+      );
     } catch (error) {
-      return DashboardState(coordinator: null, refreshErrorMessage: "Cache unavailable: $error");
+      return DashboardState(
+        coordinator: null,
+        refreshErrorMessage: "Cache unavailable: $error",
+      );
     }
   }
 
@@ -67,7 +74,9 @@ class DashboardState extends ChangeNotifier {
     });
   }
 
-  Future<void> _refresh(Future<void> Function(MarketRefreshCoordinator coordinator) operation) async {
+  Future<void> _refresh(
+    Future<void> Function(MarketRefreshCoordinator coordinator) operation,
+  ) async {
     if (isRefreshing) {
       return;
     }
@@ -80,20 +89,28 @@ class DashboardState extends ChangeNotifier {
       return;
     }
     isRefreshing = true;
-    isInitialLoading = snapshot.quotesBySymbol.isEmpty && snapshot.historiesBySymbol.isEmpty;
+    isInitialLoading =
+        snapshot.quotesBySymbol.isEmpty && snapshot.historiesBySymbol.isEmpty;
     refreshErrorMessage = null;
     notifyListeners();
-    await operation(_coordinator!);
+    await operation(_coordinator);
   }
 
   void _observeSnapshots() {
     if (_coordinator == null) {
       return;
     }
-    _snapshotSubscription = _coordinator!.snapshots().listen((MarketRefreshSnapshot value) {
+    _snapshotSubscription = _coordinator.snapshots().listen((
+      MarketRefreshSnapshot value,
+    ) {
       snapshot = value;
-      refreshErrorMessage = value.refreshErrorMessage ??
-          value.quotesBySymbol.values.where((e) => e.metadata.error != null).map((e) => e.metadata.error).cast<String?>().firstWhere((_) => true, orElse: () => null);
+      refreshErrorMessage =
+          value.refreshErrorMessage ??
+          value.quotesBySymbol.values
+              .where((e) => e.metadata.error != null)
+              .map((e) => e.metadata.error)
+              .cast<String?>()
+              .firstWhere((_) => true, orElse: () => null);
       _applyProgress(value.progress);
       notifyListeners();
     });

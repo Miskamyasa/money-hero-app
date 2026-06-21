@@ -7,7 +7,7 @@ class MarketNormalizationException implements Exception {
 
 String normalizeSymbol(String rawSymbol) {
   final String symbol = rawSymbol.trim().toUpperCase();
-  if (symbol.length < 1 || symbol.length > 32) {
+  if (symbol.isEmpty || symbol.length > 32) {
     throw const MarketNormalizationException("invalidSymbol");
   }
   return symbol;
